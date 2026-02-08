@@ -1,0 +1,199 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>عقد قران علي ميثم</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="description" content="صفحة عرض صور عقد القران وفيديو كامل لعقد قران علي ميثم." />
+</head>
+
+<body>
+  <!-- خلفية ناعمة -->
+  <div class="bg-blur"></div>
+  <!-- كانفس الألعاب النارية -->
+  <canvas id="fireworks" style="position:fixed; inset:0; pointer-events:none; z-index:10;"></canvas>
+
+  <header class="container hero">
+    <div class="badge">عقد قران</div>
+    <h1>عقد قران <span class="accent">علي ميثم</span></h1>
+    <p class="subtitle">
+      ببركة دعوات مولانا صاحب العصر والزمان (عجل الله فرجه)، نبارك للعريس علي ميثم عقد قرانه الميمون.
+      <br>
+      نسأل الله أن يجعله اجتماعاً مباركاً ترفرف عليه أجنحة السعادة والرحمة.
+    </p>
+
+    <!-- الفيديو تم نقله هنا للأعلى -->
+    <div class="video-container-highlight" style="margin: 30px auto; max-width: 800px;">
+      <div class="section-head" style="justify-content: center; text-align: center; margin-bottom: 10px;">
+        <h2 style="font-size: 1.5rem; color: var(--accent2);">شاهد فيديو العقد</h2>
+      </div>
+      <div class="video-wrap video-responsive">
+        <!-- الخيار (C): فيديو جوجل درايف -->
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          src="https://drive.google.com/file/d/1DL5DlBkMNRcacC8n7GzpyItz3WrgMXTh/preview?autoplay=1&mute=1"
+          frameborder="0" allow="autoplay; encrypted-media; fullscreen">
+        </iframe>
+      </div>
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="https://drive.google.com/file/d/1DL5DlBkMNRcacC8n7GzpyItz3WrgMXTh/view" target="_blank"
+          class="btn btn-ghost" style="font-size: 0.9rem; padding: 8px 16px; border-radius: 8px;">
+          📺 مشاهدة الفيديو
+        </a>
+      </div>
+    </div>
+
+
+    <div class="hero-actions">
+      <a class="btn" href="#gallery">عرض صور العقد</a>
+    </div>
+
+    <!-- إضافة صورة الأب والابن في مكان مميز -->
+    <div class="father-tribute" style="margin: 60px auto; text-align: center; max-width: 700px; position: relative;">
+      <!-- زخارف بسيطة حول الصورة -->
+      <div style="position: absolute; top: -20px; right: -20px; font-size: 3rem; color: var(--accent); opacity: 0.5;">✨
+      </div>
+      <div style="position: absolute; bottom: -20px; left: -20px; font-size: 3rem; color: var(--accent); opacity: 0.5;">
+        ✨</div>
+
+      <figure
+        style="background: rgba(255, 255, 255, 0.05); padding: 20px; border: 1px solid var(--accent); border-radius: 20px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); backdrop-filter: blur(5px);">
+        <img src="assets/img/BABA.jpg" alt="صورة الأب والابن"
+          style="width: 100%; height: auto; border-radius: 10px; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.3);" />
+        <figcaption style="margin-top: 20px; color: var(--text-color);">
+          <blockquote style="font-size: 1.3rem; font-family: 'Amiri', serif; line-height: 1.8;">
+            "أبتي.. يا نبع الحنان والسند، دُمتَ لنا فخراً وذخراً، وبارك الله في عمرك."
+          </blockquote>
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- معرض الصور -->
+    <section id="gallery" class="section">
+      <div class="section-head">
+        <h2>صور العقد</h2>
+        <p>اضغط على أي صورة للتكبير والتنقل بالسلايدر.</p>
+      </div>
+
+      <!-- عدّل الصور هنا بإضافة/حذف عناصر -->
+      <div class="grid" id="grid">
+        <!-- الصور تضاف هنا بواسطة الجافاسكريبت -->
+      </div>
+    </section>
+
+
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© <span id="year"></span> عقد قران علي ميثم</span>
+        <span class="dot">•</span>
+        <span>تم التصميم لعرض صور العقد والفيديو بشكل أنيق</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- نافذة التكبير (Lightbox) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="إغلاق">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="السابق">‹</button>
+
+    <div class="lb-stage">
+      <img id="lbImage" alt="عرض مكبر" />
+      <div class="lb-caption" id="lbCaption"></div>
+    </div>
+
+    <button class="lb-btn lb-next" id="lbNext" aria-label="التالي">›</button>
+  </div>
+
+  <script src="assets/js/fireworks.js"></script>
+  <script>
+    // سنة الفوتر
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // تحميل الصور ديناميكياً
+    const grid = document.getElementById("grid");
+    const totalImages = 148; // عدد الصور الكلي
+
+    for (let i = 1; i <= totalImages; i++) {
+      // تنسيق الرقم ليصبح 3 منازل (001, 002, ...)
+      const num = i.toString().padStart(3, '0');
+      const figure = document.createElement("figure");
+      figure.className = "card";
+
+      const img = document.createElement("img");
+      img.src = `assets/img/photo-${num}.jpg`;
+      img.alt = `صورة العقد ${i}`;
+      img.loading = "lazy";
+
+      figure.appendChild(img);
+      grid.appendChild(figure);
+    }
+
+    const images = Array.from(document.querySelectorAll("#grid img"));
+    const lightbox = document.getElementById("lightbox");
+    const lbImage = document.getElementById("lbImage");
+    const lbCaption = document.getElementById("lbCaption");
+    const lbClose = document.getElementById("lbClose");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+
+    let current = 0;
+
+    function openLB(index) {
+      current = index;
+      const img = images[current];
+      lbImage.src = img.src;
+      lbCaption.textContent = img.alt || "";
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLB() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lbImage.src = "";
+    }
+
+    function prev() {
+      current = (current - 1 + images.length) % images.length;
+      openLB(current);
+    }
+
+    function next() {
+      current = (current + 1) % images.length;
+      openLB(current);
+    }
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => openLB(i));
+      img.style.cursor = "zoom-in";
+    });
+
+    lbClose.addEventListener("click", closeLB);
+    lbPrev.addEventListener("click", prev);
+    lbNext.addEventListener("click", next);
+
+    // إغلاق عند الضغط خارج الصورة
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLB();
+    });
+
+    // اختصارات الكيبورد
+    window.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") closeLB();
+      if (e.key === "ArrowLeft") next();   // لأن الاتجاه RTL
+      if (e.key === "ArrowRight") prev();
+    });
+
+
+
+  </script>
+</body>
+
+</html>
